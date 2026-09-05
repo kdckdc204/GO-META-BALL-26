@@ -1,9 +1,0 @@
-{
-  "name": "go-meta-ball-2026",
-  "version": "2.0.0",
-  "private": true,
-  "description": "GO META BALL 2026 - real-time 1v1 football tactics game",
-  "main": "server.js",
-  "scripts": {"start":"node server.js"},
-  "dependencies": {"ws":"^8.18.0"}
-}

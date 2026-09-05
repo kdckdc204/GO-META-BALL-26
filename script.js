@@ -4,7 +4,7 @@ function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classL
 function startBGM(){const a=$('bgm');a.volume=.42;a.play().catch(()=>{});}
 document.addEventListener('click',()=>startBGM(),{once:true});
 function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1800)}
-function connect(){if(socket&&socket.readyState===WebSocket.OPEN)return; socket=new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host);socket.onmessage=e=>handle(JSON.parse(e.data));socket.onclose=()=>toast('서버 연결이 종료되었습니다.');}
+function connect(){if(socket&&socket.readyState===WebSocket.OPEN)return;socket=new WebSocket('https://go-meta-ball-2026.onrender.com/');socket.onmessage=e=>handle(JSON.parse(e.data));socket.onclose=()=>toast('서버 연결 종료.');}
 function send(type,data={}){if(!socket||socket.readyState!==WebSocket.OPEN)return toast('서버 연결 중입니다.');socket.send(JSON.stringify({type,...data}));}
 function createRoom(){connect();setTimeout(()=>send('create',{name:$('playerName')?.value||'HOST'}),150)}
 function joinRoom(){const c=$('joinCode').value.trim().toUpperCase();if(c.length!==6)return toast('6자리 방 코드를 입력하세요.');connect();setTimeout(()=>send('join',{code:c,name:$('playerName')?.value||'GUEST'}),150)}
